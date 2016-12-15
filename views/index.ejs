@@ -1,0 +1,43 @@
+<%- include header %>
+<!-- Main -->
+<div id="main">
+    <div class="container">
+        <div class="row">
+
+            <!-- Content -->
+            <div id="content" class="8u skel-cell-important">
+                <section>
+                    <header>
+                        <h2 class="margin-bottom12"><%=title%></h2>
+                    </header>
+                    <a href="#" class="image full"><img src="../public/images/joinus.png" alt="" /></a>
+                    <p>水滴管家和58品质公寓服务打通，将会提供公寓运营商和租客体验好、房源真、服务棒、全链条可追踪的公寓服务，将会为未来租赁首选。</p>
+                    <p>据介绍，与其他平台不同，使用水滴管家还有以下特点：第一，发房更优惠：通过水滴管家系统后台发房，用户将会享有免费推广时段；第二，体验更流畅：相较于其他发房平台，水滴管家后台可实现房源自动上下架，推广效果跳转查询等更加便利的通道和体验。其三，金融对接更便利：58同城将会为租客提供租房分期公寓金融服务，水滴管家也会根据用户实际的运营情况，提供低成本的高效率的金融贷款服务。</p>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <div id="sidebar" class="4u">
+                <section>
+                    <header>
+                        <h2>最新文章</h2>
+                    </header>
+                    <% if (posts.length) { %>
+                    <ul class="style">
+                        <% posts.forEach(function (post) {%>
+                        <li>
+                            <p class="posted"><%= post.time.minute%> |阅读量(<%=post.pv%>)</p>
+                            <a href="/post/detail?id=<%= post._id%>">
+                            <img src="../public/images/pic04.jpg" alt="" />
+                            <p class="text"><%= post.title%></p>
+                            </a>
+                        </li>
+                        <%})%>
+                    </ul>
+                    <%}%>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include footer %>

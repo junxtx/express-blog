@@ -1,0 +1,39 @@
+<%- include header %>
+
+<!-- Main -->
+<div id="main">
+    <div class="container">
+        <div class="row">
+
+            <!-- Sidebar -->
+            <div id="sidebar" class="12u">
+                <section>
+                    <header>
+                        <h2><%-title%></h2>
+                    </header>
+                    <% if (posts.length) { %>
+                    <ul class="style">
+                        <% posts.forEach(function (post) {%>
+                        <li>
+                            <p class="posted"><%= post.time.minute%>  | 浏览量(10 )</p>
+                            <a href="/post/detail?id=<%= post._id%>">
+                                <img src="../public/images/pic05.jpg" alt="" />
+                                <p class="text"><%= post.title%></p>
+                            </a>
+                        </li>
+                        <%})%>
+                    </ul>
+                    <%} else {%>
+                    <div id="noList">
+                       暂无技术周刊 <a href="/post/publish">去发布</a>
+                    </div>
+                    <%}%>
+                </section>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<%- include footer %>

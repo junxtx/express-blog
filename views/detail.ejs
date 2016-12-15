@@ -1,0 +1,43 @@
+<%- include header %>
+<!-- Main -->
+<div id="main">
+    <div class="container">
+        <div class="row">
+            <!-- Content -->
+            <div id="content" class="8u  skel-cell-important">
+                <section>
+                    <header>
+                        <h2 class="margin-bottom12"><%=post.title%></h2>
+                        <span class="f14 color-gray">作者:<%=post.name%>&nbsp;&nbsp;&nbsp;&nbsp;发布时间:<%=post.time.minute%></span>
+                    </header>
+                    <article id="detail">
+                        <%-post.content%>
+                    </article>
+                </section>
+            </div>
+            <!-- Sidebar -->
+            <div id="sidebar" class="4u">
+                <section>
+                    <header>
+                        <h2>相关文章</h2>
+                    </header>
+                    <% if (posts.length) { %>
+                    <ul class="style">
+                        <% posts.forEach(function (post) {%>
+                        <li>
+                            <p class="posted"><%= post.time.minute%> |阅读量(<%=post.pv%>)</p>
+                            <a href="/post/detail?id=<%= post._id%>">
+                                <img src="../public/images/pic04.jpg" alt="" />
+                                <p class="text"><%= post.title%></p>
+                            </a>
+                        </li>
+                        <%})%>
+                    </ul>
+                    <%}%>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<%- include footer %>

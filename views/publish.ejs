@@ -1,0 +1,71 @@
+<%- include header %>
+<link rel="stylesheet" href="../public/kindeditor/themes/default/default.css" />
+<div id="main">
+    <div class="container">
+        <div class="row">
+            <!-- Content -->
+            <div id="content" class="8u skel-cell-important">
+                <form id="publish" method="post">
+                    <h1>发布文章</h1>
+                    <p class="margin-bottom6">标题</p>
+                    <input id="title" class="margin-bottom12" type="text"  placeholder="输入文章标题" name="title"/>
+                    <p class="margin-bottom6">标签</p>
+                    <input id="tags" class="margin-bottom6" type="text" readonly  placeholder="点击下方选择标签" name="tags"/>
+                    <p class="margin-bottom12"><i title="点击选择" data-id="1">团队生活</i><i title="点击选择" data-id="2">技术周刊</i><i title="点击选择" data-id="3">行业相关</i><i title="点击选择" data-id="4">招聘信息</i></p>
+                    <p class="margin-bottom6">正文</p>
+                    <textarea id="content" class="margin-bottom12" name="content" placeholder="输入或粘贴文章内容">
+                    </textarea>
+                    <input id="tag" type="hidden" readonly  placeholder="标签" name="tag"/>
+                    <input id="submit" type="submit" value="发表"/>
+                </form>
+            </div>
+            <!-- Sidebar -->
+            <div id="sidebar" class="4u">
+                <% if (posts.length) { %>
+                <section>
+                    <header>
+                        <h2>历史发布</h2>
+                    </header>
+
+                    <ul class="style">
+                        <% posts.forEach(function (post) {%>
+                        <li>
+                            <p class="posted"><%= post.time.minute%> |阅读量(<%=post.pv%>)</p>
+                            <a href="/post/detail?id=<%= post._id%>">
+                                <img src="../public/images/pic04.jpg" alt="" />
+                                <p class="text"><%= post.title%></p>
+                            </a>
+                        </li>
+                        <%})%>
+                    </ul>
+                </section>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</div>
+<script charset="utf-8" src="../public/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../public/kindeditor/lang/zh_CN.js"></script>
+<script>
+    var editor;
+    KindEditor.ready(function(K) {
+        editor = K.create('textarea[name="content"]', {
+            resizeType : 1,
+            allowPreviewEmoticons : false,
+            allowImageUpload : false,
+            items : [
+                'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+        });
+    });
+    $(function () {
+        $("#tags").next("p").find("i").click(function () {
+            $($(this).siblings()).removeClass("active");
+            $(this).addClass("active");
+            $("#tags").val($(this).text())
+            $("#tag").val($(this).attr("data-id"))
+        })
+    })
+</script>
+<%- include footer %>

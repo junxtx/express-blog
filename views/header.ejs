@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <link rel="stylesheet" href="../public/css/style.css"/>
+    <link rel="stylesheet" href="../public/css/skel-noscript.css"/>
+    <link rel="stylesheet" href="../public/css/style-desktop.css"/>
+    <!--<link href='http://fonts.useso.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>-->
+    <!--[if lte IE 8]>
+    <script src="../public/js/html5shiv.js"></script><![endif]-->
+    <script src="../public/js/jquery.min.js"></script>
+    <script src="../public/js/skel.min.js"></script>
+    <script src="../public/js/skel-panels.min.js"></script>
+    <script src="../public/js/init.js"></script>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="../public/css/ie/v8.css"/><![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../public/css/ie/v9.css"/><![endif]-->
+</head>
+<body class="homepage">
+<!-- Header -->
+<div id="header">
+    <div class="container">
+
+        <!-- Logo -->
+        <div id="logo">
+            <h1><a href="javascript:;">小水滴研发部</a></h1>
+            <span>——源于点滴的积累</span>
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li id="nav_index"><a href="/">团队介绍</a></li>
+                <li id="nav_life"><a href="/post/life">团队生活</a></li>
+                <li id="nav_tech"><a href="/post/tech">技术周刊</a></li>
+                <li id="nav_detail"><a href="/post/detail?id=58364f3e2a5582f62c4406e3">我们需要你</a></li>
+                <% if (user) { %>
+                <li id="nav_publish"><a href="/post/publish">发布文章</a></li>
+                <li id="nav_user">
+                    <p>
+                        <img src="../public/images/user.jpg" width="30" height="24"><span><%-user.name%></span>
+                    </p>
+                    <dl>
+                        <dd><a href="/users/logout">退出</a></dd>
+                    </dl>
+                </li>
+                <% } else { %>
+                <li id="nav_login"><a href="/users/login">登录</a></li>
+                <li id="nav_reg"><a href="/users/reg">注册</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script>
+    $(function () {
+        var target=window.location.href.split(window.location.host)[1];
+        if(target.indexOf("/post/life")!=-1){
+            $("#nav_life").addClass("active")
+        }else if(target.indexOf("/post/tech")!=-1){
+            $("#nav_tech").addClass("active")
+        }else if(target.indexOf("/post/publish")!=-1){
+            $("#nav_publish").addClass("active")
+        }else if(target.indexOf("/users/login")!=-1){
+            $("#nav_login").addClass("active")
+        }else if(target.indexOf("/users/reg")!=-1){
+            $("#nav_reg").addClass("active")
+        }else if(target.indexOf("/post/detail")!=-1){
+            $("#nav_detail").addClass("active")
+        } else{
+            $("#nav_index").addClass("active")
+        }
+    })
+</script>
